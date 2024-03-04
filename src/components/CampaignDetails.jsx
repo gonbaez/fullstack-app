@@ -7,9 +7,7 @@ import Stats from "./Stats";
 const CampaignDetails = () => {
   const { id } = useParams();
 
-  const singleCampaign = useSelector((state) =>
-    selectSingleCampaign(state, id)
-  );
+  const singleCampaign = useSelector(selectSingleCampaign(id));
 
   if (!singleCampaign) {
     return <h1>loading...</h1>;

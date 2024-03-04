@@ -13,6 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import "./css/App.css";
+import Index from "./components/account/Index";
 
 const App = () => {
   const dispatch = useDispatch();

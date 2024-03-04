@@ -15,19 +15,29 @@ export const campaignSlice = createSlice({
     setMessage: (state, { payload }) => {
       state.message = payload;
     },
+    updateExistingCampaign: (state, { payload }) => {
+      const indexOf = state.campaignData.findIndex((camp) => {
+        return camp.id === payload.campaign.id;
+      });
+
+      state.campaignData[indexOf].contributed += Number(payload.value);
+    },
   },
 });
 
-export const { setCampaignData, setSearchTerm, setMessage } =
-  campaignSlice.actions;
+export const {
+  setCampaignData,
+  setSearchTerm,
+  setMessage,
+  updateExistingCampaign,
+} = campaignSlice.actions;
 
 // get data from store
 export const selectCampaignData = (state) => state.campaign.campaignData;
 export const selectSearchTerm = (state) => state.campaign.searchTerm;
-export const selectSingleCampaign = (state, id) => {
-  console.log(id, state.campaign.campaignData);
+export const selectSingleCampaign = (id) => (state) => {
   return state.campaign.campaignData.find((c) => {
-    return c.id === id;
+    return c.id === Number(id);
   });
 };
 export const selectMessage = (state) => state.campaign.message;
